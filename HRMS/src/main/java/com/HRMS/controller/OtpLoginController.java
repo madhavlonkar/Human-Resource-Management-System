@@ -15,6 +15,8 @@ public class OtpLoginController {
 	private OtpLoginService otpLoginService;
 	
 	
+	//this is to save otp in database
+	//euuu
 	public void OtpSave(String username,int otp)
 	{
 		this.otpLoginService.saveotp(username,otp);
