@@ -20,7 +20,8 @@ import com.HRMS.services.EmployeeAllowanceService;
 
 @RestController
 public class EmployeeAllowanceController {
-
+	
+	//Implementing Log4j
 	static Logger logger = LogManager.getLogger(EmployeeAllowanceController.class);
 
 	@Autowired
