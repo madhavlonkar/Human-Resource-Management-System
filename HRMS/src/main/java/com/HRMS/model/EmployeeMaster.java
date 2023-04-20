@@ -14,7 +14,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="Employee_Master")
+@Table(name="tbl_employee")
 public class EmployeeMaster {
 	
 	@Id
@@ -43,27 +43,27 @@ public class EmployeeMaster {
     private String empAadhaarNo;
     
     @OneToOne
-    @JoinColumn(name = "bank_id")
-    private BankMaster bank_id;
+    @JoinColumn(name = "bankId")
+    private BankMaster bankId;
     
     private String empBankAccNo;
     private String empGender;
     private Date doj;
     
     @OneToOne
-    @JoinColumn(name="project_id")
-    private ProjectMaster project_id;
+    @JoinColumn(name="projectId")
+    private ProjectMaster projectId;
     
     private String empResume;
     private String empStatus;
     
     @OneToOne
-    @JoinColumn(name="department_id")
-    private DepartmentMaster department_id;
+    @JoinColumn(name="departmentId")
+    private DepartmentMaster departmentId;
     
     @OneToOne
-    @JoinColumn(name="designation_id")
-    private DesignationMaster designation_id;
+    @JoinColumn(name="designationId")
+    private DesignationMaster designationId;
     
     private String empQualification;
     private int demandId;
@@ -122,10 +122,10 @@ public class EmployeeMaster {
 		return empAadhaarNo;
 	}
 	/**
-	 * @return the bank_id
+	 * @return the bankId
 	 */
-	public BankMaster getBank_id() {
-		return bank_id;
+	public BankMaster getBankId() {
+		return bankId;
 	}
 	/**
 	 * @return the empBankAccNo
@@ -146,10 +146,10 @@ public class EmployeeMaster {
 		return doj;
 	}
 	/**
-	 * @return the project_id
+	 * @return the projectId
 	 */
-	public ProjectMaster getProject_id() {
-		return project_id;
+	public ProjectMaster getProjectId() {
+		return projectId;
 	}
 	/**
 	 * @return the empResume
@@ -164,16 +164,16 @@ public class EmployeeMaster {
 		return empStatus;
 	}
 	/**
-	 * @return the department_id
+	 * @return the departmentId
 	 */
-	public DepartmentMaster getDepartment_id() {
-		return department_id;
+	public DepartmentMaster getDepartmentId() {
+		return departmentId;
 	}
 	/**
-	 * @return the designation_id
+	 * @return the designationId
 	 */
-	public DesignationMaster getDesignation_id() {
-		return designation_id;
+	public DesignationMaster getDesignationId() {
+		return designationId;
 	}
 	/**
 	 * @return the empQualification
@@ -242,10 +242,10 @@ public class EmployeeMaster {
 		this.empAadhaarNo = empAadhaarNo;
 	}
 	/**
-	 * @param bank_id the bank_id to set
+	 * @param bankId the bankId to set
 	 */
-	public void setBank_id(BankMaster bank_id) {
-		this.bank_id = bank_id;
+	public void setBankId(BankMaster bankId) {
+		this.bankId = bankId;
 	}
 	/**
 	 * @param empBankAccNo the empBankAccNo to set
@@ -266,10 +266,10 @@ public class EmployeeMaster {
 		this.doj = doj;
 	}
 	/**
-	 * @param project_id the project_id to set
+	 * @param projectId the projectId to set
 	 */
-	public void setProject_id(ProjectMaster project_id) {
-		this.project_id = project_id;
+	public void setProjectId(ProjectMaster projectId) {
+		this.projectId = projectId;
 	}
 	/**
 	 * @param empResume the empResume to set
@@ -284,16 +284,16 @@ public class EmployeeMaster {
 		this.empStatus = empStatus;
 	}
 	/**
-	 * @param department_id the department_id to set
+	 * @param departmentId the departmentId to set
 	 */
-	public void setDepartment_id(DepartmentMaster department_id) {
-		this.department_id = department_id;
+	public void setDepartmentId(DepartmentMaster departmentId) {
+		this.departmentId = departmentId;
 	}
 	/**
-	 * @param designation_id the designation_id to set
+	 * @param designationId the designationId to set
 	 */
-	public void setDesignation_id(DesignationMaster designation_id) {
-		this.designation_id = designation_id;
+	public void setDesignationId(DesignationMaster designationId) {
+		this.designationId = designationId;
 	}
 	/**
 	 * @param empQualification the empQualification to set
@@ -317,22 +317,22 @@ public class EmployeeMaster {
 	 * @param dob
 	 * @param empPan
 	 * @param empAadhaarNo
-	 * @param bank_id
+	 * @param bankId
 	 * @param empBankAccNo
 	 * @param empGender
 	 * @param doj
-	 * @param project_id
+	 * @param projectId
 	 * @param empResume
 	 * @param empStatus
-	 * @param department_id
-	 * @param designation_id
+	 * @param departmentId
+	 * @param designationId
 	 * @param empQualification
 	 * @param demandId
 	 */
 	public EmployeeMaster(int empId, String empName, String empEmail, String empPhonePrimary,
 			String empPhoneAlternative, String empAddress, Date dob, String empPan, String empAadhaarNo,
-			BankMaster bank_id, String empBankAccNo, String empGender, Date doj, ProjectMaster project_id,
-			String empResume, String empStatus, DepartmentMaster department_id, DesignationMaster designation_id,
+			BankMaster bankId, String empBankAccNo, String empGender, Date doj, ProjectMaster projectId,
+			String empResume, String empStatus, DepartmentMaster departmentId, DesignationMaster designationId,
 			String empQualification, int demandId) {
 		super();
 		this.empId = empId;
@@ -344,17 +344,27 @@ public class EmployeeMaster {
 		this.dob = dob;
 		this.empPan = empPan;
 		this.empAadhaarNo = empAadhaarNo;
-		this.bank_id = bank_id;
+		this.bankId = bankId;
 		this.empBankAccNo = empBankAccNo;
 		this.empGender = empGender;
 		this.doj = doj;
-		this.project_id = project_id;
+		this.projectId = projectId;
 		this.empResume = empResume;
 		this.empStatus = empStatus;
-		this.department_id = department_id;
-		this.designation_id = designation_id;
+		this.departmentId = departmentId;
+		this.designationId = designationId;
 		this.empQualification = empQualification;
 		this.demandId = demandId;
+	}
+	@Override
+	public String toString() {
+		return "EmployeeMaster [empId=" + empId + ", empName=" + empName + ", empEmail=" + empEmail
+				+ ", empPhonePrimary=" + empPhonePrimary + ", empPhoneAlternative=" + empPhoneAlternative
+				+ ", empAddress=" + empAddress + ", dob=" + dob + ", empPan=" + empPan + ", empAadhaarNo="
+				+ empAadhaarNo + ", bankId=" + bankId + ", empBankAccNo=" + empBankAccNo + ", empGender=" + empGender
+				+ ", doj=" + doj + ", projectId=" + projectId + ", empResume=" + empResume + ", empStatus=" + empStatus
+				+ ", departmentId=" + departmentId + ", designationId=" + designationId + ", empQualification="
+				+ empQualification + ", demandId=" + demandId + "]";
 	}
 	/**
 	 * 
@@ -363,20 +373,10 @@ public class EmployeeMaster {
 		super();
 	}
 	
-	public EmployeeMaster(int empid) {
+	public EmployeeMaster(int empID) {
 		super();
-		this.empId=empid;
+		this.empId=empID;
 	}
-	@Override
-	public String toString() {
-		return "EmployeeMaster [empId=" + empId + ", empName=" + empName + ", empEmail=" + empEmail
-				+ ", empPhonePrimary=" + empPhonePrimary + ", empPhoneAlternative=" + empPhoneAlternative
-				+ ", empAddress=" + empAddress + ", dob=" + dob + ", empPan=" + empPan + ", empAadhaarNo="
-				+ empAadhaarNo + ", bank_id=" + bank_id + ", empBankAccNo=" + empBankAccNo + ", empGender=" + empGender
-				+ ", doj=" + doj + ", project_id=" + project_id + ", empResume=" + empResume + ", empStatus="
-				+ empStatus + ", department_id=" + department_id + ", designation_id=" + designation_id
-				+ ", empQualification=" + empQualification + ", demandId=" + demandId + "]";
-	}
-
+    
     
 }

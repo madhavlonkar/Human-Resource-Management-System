@@ -1,70 +1,84 @@
 package com.HRMS.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="designation_master")
+@Table(name="tbl_designation")
 public class DesignationMaster {
 
 	@Id
-	@Column(name="designation_id")
-	private int designation_id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int designationId;
 	
-	@Column(name="designation_name")
-	private String designation_name;
-	
-	@Column(name="designation_description")
-	private String designation_description;
-
-	public int getDesignation_id() {
-		return designation_id;
+	private String designationName;
+	private String designationDescription;
+	/**
+	 * @return the designationId
+	 */
+	public int getDesignationId() {
+		return designationId;
 	}
-
-	public void setDesignation_id(int designation_id) {
-		this.designation_id = designation_id;
+	/**
+	 * @return the designationName
+	 */
+	public String getDesignationName() {
+		return designationName;
 	}
-
-	public String getDesignation_name() {
-		return designation_name;
+	/**
+	 * @return the designationDescription
+	 */
+	public String getDesignationDescription() {
+		return designationDescription;
 	}
-
-	public void setDesignation_name(String designation_name) {
-		this.designation_name = designation_name;
+	/**
+	 * @param designationId the designationId to set
+	 */
+	public void setDesignationId(int designationId) {
+		this.designationId = designationId;
 	}
-
-	public String getDesignation_description() {
-		return designation_description;
+	/**
+	 * @param designationName the designationName to set
+	 */
+	public void setDesignationName(String designationName) {
+		this.designationName = designationName;
 	}
-
-	public void setDesignation_description(String designation_description) {
-		this.designation_description = designation_description;
+	/**
+	 * @param designationDescription the designationDescription to set
+	 */
+	public void setDesignationDescription(String designationDescription) {
+		this.designationDescription = designationDescription;
 	}
-
-	public DesignationMaster(int designation_id, String designation_name, String designation_description) {
+	@Override
+	public String toString() {
+		return "DesignationMaster [designationId=" + designationId + ", designationName=" + designationName
+				+ ", designationDescription=" + designationDescription + "]";
+	}
+	/**
+	 * @param designationId
+	 * @param designationName
+	 * @param designationDescription
+	 */
+	public DesignationMaster(int designationId, String designationName, String designationDescription) {
 		super();
-		this.designation_id = designation_id;
-		this.designation_name = designation_name;
-		this.designation_description = designation_description;
+		this.designationId = designationId;
+		this.designationName = designationName;
+		this.designationDescription = designationDescription;
 	}
-
+	/**
+	 * 
+	 */
 	public DesignationMaster() {
 		super();
 	}
-	
-	public DesignationMaster(int designation_id) {
+
+	public DesignationMaster(int designationId) {
 		super();
-		this.designation_id=designation_id;
+		this.designationId=designationId;
 	}
 
-	@Override
-	public String toString() {
-		return "DesignationMaster [designation_id=" + designation_id + ", designation_name=" + designation_name
-				+ ", designation_description=" + designation_description + "]";
-	}
-	
-	
 
 }

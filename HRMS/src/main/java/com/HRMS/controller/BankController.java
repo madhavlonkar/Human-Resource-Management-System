@@ -18,91 +18,83 @@ import com.HRMS.services.BankService;
 
 @RestController
 public class BankController {
-	
+
 	@Autowired
 	private BankService bankservice;
-	
+
 	@GetMapping("/bank")
-	public ResponseEntity<List<BankMaster>> getbanks()
-	{
-		List<BankMaster> getbanks = this.bankservice.getbanks();
-		if(getbanks.size()<=0)
-		{
+	public ResponseEntity<List<BankMaster>> getbanks() {
+		List<BankMaster> getbanks = this.bankservice.getAllBanks();
+		if (getbanks.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
 		return ResponseEntity.ok().body(getbanks);
 	}
-	
-	@GetMapping("/bank/{bank_id}")
-	public ResponseEntity<BankMaster> getbankbyid(@PathVariable("bank_id") int bank_id)
-	{
-		BankMaster getbanks = this.bankservice.getbanks(bank_id);
-		
-		if(getbanks==null)
-		{
+
+	@GetMapping("/bank/{bankId}")
+	public ResponseEntity<BankMaster> getBankById(@PathVariable("bankId") int bankId) {
+		BankMaster getbanks = this.bankservice.getBankById(bankId);
+
+		if (getbanks == null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
-		
+
 		return ResponseEntity.ok().body(getbanks);
-		
+
 	}
-	
+
 	@PostMapping("/bank")
-	public ResponseEntity<BankMaster> addbank(@RequestBody BankMaster bank)
-	{
+	public ResponseEntity<BankMaster> addbank(@RequestBody BankMaster bank) {
+
 		try {
-			
-			BankMaster addbank = this.bankservice.addbank(bank);
+			BankMaster addbank = this.bankservice.addBank(bank);
 			return ResponseEntity.ok().body(addbank);
-			
+
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
-		
+
 	}
-	
-	@DeleteMapping("/bank/{bank_id}")
-	public ResponseEntity<Void> deletebank(@PathVariable("bank_id") int bank_id)
-	{
-		BankMaster getbanks = this.bankservice.getbanks(bank_id);
-		if(getbanks==null)
-		{
+
+	@DeleteMapping("/bank/{bankId}")
+	public ResponseEntity<Void> deletebank(@PathVariable("bankId") int bankId) {
+		
+		
+		BankMaster getbanks = this.bankservice.getBankById(bankId);
+		if (getbanks == null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
+		
+		
 		try {
-			
-			bankservice.deletebank(bank_id);
+			bankservice.deleteBank(bankId);
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
-		
+
 	}
-	
-	@PutMapping("/bank/{bank_id}")
-	public ResponseEntity<BankMaster> updatebank(@RequestBody BankMaster bank,@PathVariable("bank_id") int bank_id)
-	{
-		BankMaster updatebank = null;
-		BankMaster getbanks = this.bankservice.getbanks(bank_id);
-		if(getbanks==null)
-		{
+
+	@PutMapping("/bank")
+	public ResponseEntity<BankMaster> updatebank(@RequestBody BankMaster bank) {
+
+		int bankId = bank.getBankId();
+		BankMaster getbanks = this.bankservice.getBankById(bankId);
+		if (getbanks == null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
+		
 		try {
-			updatebank= this.bankservice.updatebank(bank,bank_id);
+			BankMaster updatebank = this.bankservice.updateBank(bank);
 			return ResponseEntity.ok().body(updatebank);
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
-		
-	}
 
-	
+	}
 
 }

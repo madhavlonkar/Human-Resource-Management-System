@@ -30,7 +30,7 @@ public class EmployeeAllowanceController {
 	@GetMapping("/employeeallowance/{empid}")
 	public ResponseEntity<List<EmployeeAllowance>> EmployeeAllAllowance(@PathVariable("empid") int empid) {
 		List<EmployeeAllowance> employeeAllAllowance = this.EAService.EmployeeAllAllowance(empid);
-		if (employeeAllAllowance.size() <= 0) {
+		if (employeeAllAllowance.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
 		return ResponseEntity.status(HttpStatus.FOUND).body(employeeAllAllowance);

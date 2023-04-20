@@ -4,6 +4,8 @@ import java.sql.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
@@ -11,99 +13,128 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="Leave_Master")
+@Table(name="tbl_leave")
 public class LeaveMaster {
 	
 	@Id
-	@Column(name="leaveid")
-	private int leaveid;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int leaveId;
 	
 	@OneToOne
-	@JoinColumn(name="empid")
-	private EmployeeMaster empid;
+	@JoinColumn(name="empId")
+	private EmployeeMaster empId;
 
-	@Column(name="leave_from")
-	private Date leave_from;
-	
-	@Column(name="leave_to")
-	private Date leave_to;
-	
-	@Column(name="leave_type")
-	private String leave_type;
-	
-	@Column(name="leave_reason")
-	private String leavereason;
-
-	public int getLeaveid() {
-		return leaveid;
+	private Date leaveFrom;
+	private Date leaveTo;
+	private String leaveType;
+	private String leaveReason;
+	/**
+	 * @return the leaveId
+	 */
+	public int getLeaveId() {
+		return leaveId;
 	}
-
-	public void setLeaveid(int leaveid) {
-		this.leaveid = leaveid;
+	/**
+	 * @return the empId
+	 */
+	public EmployeeMaster getEmpId() {
+		return empId;
 	}
-
-	public EmployeeMaster getEmpid() {
-		return empid;
+	/**
+	 * @return the leaveFrom
+	 */
+	public Date getLeaveFrom() {
+		return leaveFrom;
 	}
-
-	public void setEmpid(EmployeeMaster empid) {
-		this.empid = empid;
+	/**
+	 * @return the leaveTo
+	 */
+	public Date getLeaveTo() {
+		return leaveTo;
 	}
-
-	public Date getLeave_from() {
-		return leave_from;
+	/**
+	 * @return the leaveType
+	 */
+	public String getLeaveType() {
+		return leaveType;
 	}
-
-	public void setLeave_from(Date leave_from) {
-		this.leave_from = leave_from;
+	/**
+	 * @return the leaveReason
+	 */
+	public String getLeaveReason() {
+		return leaveReason;
 	}
-
-	public Date getLeave_to() {
-		return leave_to;
+	/**
+	 * @param leaveId the leaveId to set
+	 */
+	public void setLeaveId(int leaveId) {
+		this.leaveId = leaveId;
 	}
-
-	public void setLeave_to(Date leave_to) {
-		this.leave_to = leave_to;
+	/**
+	 * @param empId the empId to set
+	 */
+	public void setEmpId(EmployeeMaster empId) {
+		this.empId = empId;
 	}
-
-	public String getLeave_type() {
-		return leave_type;
+	/**
+	 * @param leaveFrom the leaveFrom to set
+	 */
+	public void setLeaveFrom(Date leaveFrom) {
+		this.leaveFrom = leaveFrom;
 	}
-
-	public void setLeave_type(String leave_type) {
-		this.leave_type = leave_type;
+	/**
+	 * @param leaveTo the leaveTo to set
+	 */
+	public void setLeaveTo(Date leaveTo) {
+		this.leaveTo = leaveTo;
 	}
-
-	public String getLeavereason() {
-		return leavereason;
+	/**
+	 * @param leaveType the leaveType to set
+	 */
+	public void setLeaveType(String leaveType) {
+		this.leaveType = leaveType;
 	}
-
-	public void setLeavereason(String leavereason) {
-		this.leavereason = leavereason;
+	/**
+	 * @param leaveReason the leaveReason to set
+	 */
+	public void setLeaveReason(String leaveReason) {
+		this.leaveReason = leaveReason;
 	}
-
-	public LeaveMaster(int leaveid, EmployeeMaster empid, Date leave_from, Date leave_to, String leave_type, String leavereason) {
+	/**
+	 * @param leaveId
+	 * @param empId
+	 * @param leaveFrom
+	 * @param leaveTo
+	 * @param leaveType
+	 * @param leaveReason
+	 */
+	public LeaveMaster(int leaveId, EmployeeMaster empId, Date leaveFrom, Date leaveTo, String leaveType,
+			String leaveReason) {
 		super();
-		this.leaveid = leaveid;
-		this.empid = empid;
-		this.leave_from = leave_from;
-		this.leave_to = leave_to;
-		this.leave_type = leave_type;
-		this.leavereason = leavereason;
+		this.leaveId = leaveId;
+		this.empId = empId;
+		this.leaveFrom = leaveFrom;
+		this.leaveTo = leaveTo;
+		this.leaveType = leaveType;
+		this.leaveReason = leaveReason;
 	}
-
-	public LeaveMaster() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
 	@Override
 	public String toString() {
-		return "LeaveMaster [leaveid=" + leaveid + ", empid=" + empid + ", leave_from=" + leave_from + ", leave_to="
-				+ leave_to + ", leave_type=" + leave_type + ", leavereason=" + leavereason + "]";
+		return "LeaveMaster [leaveId=" + leaveId + ", empId=" + empId + ", leaveFrom=" + leaveFrom + ", leaveTo="
+				+ leaveTo + ", leaveType=" + leaveType + ", leaveReason=" + leaveReason + "]";
 	}
+	/**
+	 * 
+	 */
+	public LeaveMaster() {
+		super();
+	}
+
 	
-	
+	public LeaveMaster(int leaveid) {
+		super();
+		this.leaveId=leaveid;
+	}
 	
 
 }

@@ -21,92 +21,75 @@ public class DeductionController {
 
 	@Autowired
 	private DeductionService dedcutionservice;
-	
+
 	@GetMapping("/deduction")
-	public ResponseEntity<List<DeductionMaster>> getdeduction()
-	{
-		List<DeductionMaster> getdeduction = this.dedcutionservice.getdeduction();
-		if(getdeduction.size()<=0)
-		{
+	public ResponseEntity<List<DeductionMaster>> getAllDeduction() {
+		List<DeductionMaster> getDeduction = this.dedcutionservice.getAllDeduction();
+		if (getDeduction.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
-		
-		return ResponseEntity.ok().body(getdeduction);
-	}
-	
-	@GetMapping("/deduction/{deduction_id}")
-	public ResponseEntity<DeductionMaster> getdeduction(@PathVariable("deduction_id") int deductionid)
-	{
-		DeductionMaster getdeductionbyid = dedcutionservice.getdeductionbyid(deductionid);;
-		if(getdeductionbyid==null)
-		{
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-		}
-		return ResponseEntity.ok().body(getdeductionbyid);
-		
-		
-	}
-	
-	@PostMapping("/deduction")
-	public ResponseEntity<DeductionMaster> adddeduction(@RequestBody DeductionMaster deduction)
-	{
-		DeductionMaster adddeduction = null;
-		
-		try
-		{
-			adddeduction=dedcutionservice.adddeduction(deduction);
-			return ResponseEntity.ok().body(adddeduction);
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-		}
-		
+		return ResponseEntity.ok().body(getDeduction);
 	}
 
-	
-	@PutMapping("/deduction/{deduction_id}")
-	public ResponseEntity<DeductionMaster> updatededuction(@RequestBody DeductionMaster deduction,@PathVariable("deduction_id") int deduction_id)
-	{
-		DeductionMaster updatebook =null;
-		DeductionMaster getdeductionbyid = dedcutionservice.getdeductionbyid(deduction_id);;
-		if(getdeductionbyid==null)
-		{
+	@GetMapping("/deduction/{deductionId}")
+	public ResponseEntity<DeductionMaster> getDeductionById(@PathVariable("deductionId") int deductionId) {
+		DeductionMaster getDeductionById = dedcutionservice.getDeductionById(deductionId);
+		;
+		if (getDeductionById == null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
-		try
-		{
-			updatebook=dedcutionservice.updatebook(deduction,deduction_id);
-			return ResponseEntity.ok().body(updatebook);
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-		}
-		 
-		
+		return ResponseEntity.ok().body(getDeductionById);
+
 	}
-	
-	@DeleteMapping("/deduction/{deduction_id}")
-	public ResponseEntity<Void> deletededuction(@PathVariable("deduction_id") int deduction_id)
-	{
-		DeductionMaster getdeductionbyid = dedcutionservice.getdeductionbyid(deduction_id);;
-		if(getdeductionbyid==null)
-		{
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-		}
-		try
-		{
-			dedcutionservice.deletededuction(deduction_id);
-			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-		}
-		catch(Exception e)
-		{
+
+	@PostMapping("/deduction")
+	public ResponseEntity<DeductionMaster> addDeduction(@RequestBody DeductionMaster deduction) {
+		try {
+			DeductionMaster addedDeduction = dedcutionservice.addDeduction(deduction);
+			return ResponseEntity.ok().body(addedDeduction);
+		} catch (Exception e) {
 			e.printStackTrace();
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
-		
+
+	}
+
+	@PutMapping("/deduction/{deductionId}")
+	public ResponseEntity<DeductionMaster> updatededuction(@RequestBody DeductionMaster deduction,
+			@PathVariable("deductionId") int deductionId) {
+
+		DeductionMaster getdeductionbyid = dedcutionservice.getDeductionById(deductionId);
+		;
+		if (getdeductionbyid == null) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		}
+
+		try {
+			DeductionMaster updatedBook = dedcutionservice.updateDeduction(deduction);
+			return ResponseEntity.ok().body(updatedBook);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+
+	}
+
+	@DeleteMapping("/deduction/{deductionId}")
+	public ResponseEntity<Void> deletededuction(@PathVariable("deductionId") int deductionId) {
+
+		DeductionMaster getdeductionbyid = dedcutionservice.getDeductionById(deductionId);
+		;
+		if (getdeductionbyid == null) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		}
+
+		try {
+			dedcutionservice.deleteDeduction(deductionId);
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+
 	}
 }

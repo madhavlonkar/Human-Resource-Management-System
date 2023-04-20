@@ -1,84 +1,102 @@
 package com.HRMS.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="department_master")
+@Table(name="tbl_deduction")
 public class DepartmentMaster {
 
 	@Id
-	@Column(name="department_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int department_id;
 	
-	@Column(name="department_name")
-	private String department_name;
-	
-	@Column(name="department_location")
-	private String department_location;
-	
-	@Column(name="department_description")
-	private String department_description;
-
+	private String departmentName;
+	private String departmentLocation;
+	private String departmentDescription;
+	/**
+	 * @return the department_id
+	 */
 	public int getDepartment_id() {
 		return department_id;
 	}
-
+	/**
+	 * @return the departmentName
+	 */
+	public String getDepartmentName() {
+		return departmentName;
+	}
+	/**
+	 * @return the departmentLocation
+	 */
+	public String getDepartmentLocation() {
+		return departmentLocation;
+	}
+	/**
+	 * @return the departmentDescription
+	 */
+	public String getDepartmentDescription() {
+		return departmentDescription;
+	}
+	/**
+	 * @param department_id the department_id to set
+	 */
 	public void setDepartment_id(int department_id) {
 		this.department_id = department_id;
 	}
-
-	public String getDepartment_name() {
-		return department_name;
+	/**
+	 * @param departmentName the departmentName to set
+	 */
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
 	}
-
-	public void setDepartment_name(String department_name) {
-		this.department_name = department_name;
+	/**
+	 * @param departmentLocation the departmentLocation to set
+	 */
+	public void setDepartmentLocation(String departmentLocation) {
+		this.departmentLocation = departmentLocation;
 	}
-
-	public String getDepartment_location() {
-		return department_location;
+	/**
+	 * @param departmentDescription the departmentDescription to set
+	 */
+	public void setDepartmentDescription(String departmentDescription) {
+		this.departmentDescription = departmentDescription;
 	}
-
-	public void setDepartment_location(String department_location) {
-		this.department_location = department_location;
+	@Override
+	public String toString() {
+		return "DepartmentMaster [department_id=" + department_id + ", departmentName=" + departmentName
+				+ ", departmentLocation=" + departmentLocation + ", departmentDescription=" + departmentDescription
+				+ "]";
 	}
-
-	public String getDepartment_description() {
-		return department_description;
-	}
-
-	public void setDepartment_description(String department_description) {
-		this.department_description = department_description;
-	}
-
-	public DepartmentMaster(int department_id, String department_name, String department_location,
-			String department_description) {
+	/**
+	 * @param department_id
+	 * @param departmentName
+	 * @param departmentLocation
+	 * @param departmentDescription
+	 */
+	public DepartmentMaster(int department_id, String departmentName, String departmentLocation,
+			String departmentDescription) {
 		super();
 		this.department_id = department_id;
-		this.department_name = department_name;
-		this.department_location = department_location;
-		this.department_description = department_description;
+		this.departmentName = departmentName;
+		this.departmentLocation = departmentLocation;
+		this.departmentDescription = departmentDescription;
 	}
-
+	/**
+	 * 
+	 */
 	public DepartmentMaster() {
 		super();
 	}
-	
-	public DepartmentMaster(int department_id) {
+
+	public DepartmentMaster(int deductionId) {
 		super();
-		this.department_id=department_id;
+		this.department_id=deductionId;
 	}
 
-	@Override
-	public String toString() {
-		return "DepartmentMaster [department_id=" + department_id + ", department_name=" + department_name
-				+ ", department_location=" + department_location + ", department_description=" + department_description
-				+ "]";
-	}
-	
 	
 	
 

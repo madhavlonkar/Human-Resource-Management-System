@@ -3,7 +3,6 @@ package com.HRMS.controller;
 import java.util.List;
 import java.util.Optional;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,44 +21,32 @@ import com.HRMS.services.AllowanceService;
 public class AllowanceController {
 
 	@Autowired
-	private AllowanceService allowanceService; // Service for Allowance
+	private AllowanceService allowanceService;
 
-	// Get All Allowances
 	@GetMapping("/allowances")
 	public ResponseEntity<List<AllowanceMaster>> getAllAllowances() {
 		List<AllowanceMaster> allAllowances = allowanceService.getAllAllowances();
-		
-		// If there are no allowances, return not found
-		if (allAllowances.size() <= 0) {
+
+		if (allAllowances.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
-		
-		// Return all the allowances
 		return ResponseEntity.of(Optional.of(allAllowances));
 	}
 
-	// Get Allowance by Id
 	@GetMapping("/allowances/{id}")
 	public ResponseEntity<AllowanceMaster> getAllowanceById(@PathVariable("id") int id) {
 		AllowanceMaster allowanceById = allowanceService.getAllowanceById(id);
 
-		// If there's no allowance with that id, return not found
 		if (allowanceById == null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
-
-		// Return the allowance with that id
 		return ResponseEntity.ok().body(allowanceById);
 	}
 
-	// Add an Allowance
 	@PostMapping("/allowances")
 	public ResponseEntity<AllowanceMaster> addAllowance(@RequestBody AllowanceMaster allowance) {
-		AllowanceMaster addedAllowance = null;
-
 		try {
-			// Try to add the allowance
-			addedAllowance = allowanceService.addAllowance(allowance);
+			AllowanceMaster addedAllowance = allowanceService.addAllowance(allowance);
 			return ResponseEntity.ok().body(addedAllowance);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -68,21 +55,17 @@ public class AllowanceController {
 
 	}
 
-	// Update an Allowance
-	@PutMapping("allowances/{id}")
-	public ResponseEntity<AllowanceMaster> updateAllowance(@RequestBody AllowanceMaster allowance, @PathVariable int id) {
-		AllowanceMaster updatedAllowance = null;
-
-		AllowanceMaster allowanceById = allowanceService.getAllowanceById(id);
+	@PutMapping("allowances")
+	public ResponseEntity<AllowanceMaster> updateAllowance(@RequestBody AllowanceMaster allowance) {
 		
-		// If there's no allowance with that id, return not found
+		int id = allowance.getAllowanceId();
+		AllowanceMaster allowanceById = allowanceService.getAllowanceById(id);
 		if (allowanceById == null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
-		
+
 		try {
-			// Try to update the allowance
-			updatedAllowance = allowanceService.updateAllowance(allowance, id);
+			AllowanceMaster updatedAllowance = allowanceService.updateAllowance(allowance);
 			return ResponseEntity.ok().body(updatedAllowance);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -91,26 +74,23 @@ public class AllowanceController {
 
 	}
 
-	// Delete an Allowance
 	@DeleteMapping("/allowances/{id}")
 	public ResponseEntity<Void> deleteAllowance(@PathVariable("id") int id) {
+		
 		AllowanceMaster allowanceById = allowanceService.getAllowanceById(id);
-
-		// If there's no allowance with that id, return not found
 		if (allowanceById == null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
-		try
-		{
+		
+		
+		try {
 			this.allowanceService.deleteAllowance(id);
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
-		
+
 	}
 
 }

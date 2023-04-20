@@ -1,71 +1,86 @@
 package com.HRMS.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="AllowanceMaster")
+@Table(name="tbl_allowance")
 public class AllowanceMaster {
 
-		@Id
-		@Column(name="allowance_id")
-		private int allowance_id;
-		
-		@Column(name="allowance_name")
-		private String allowance_name;
-		
-		@Column(name="allowance_decription")
-		private String allowance_description;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int allowanceId;
+	private String allowanceName;
+	private String allowanceDescription;
+	
+	/**
+	 * @return the allowanceId
+	 */
+	public int getAllowanceId() {
+		return allowanceId;
+	}
+	/**
+	 * @return the allowanceName
+	 */
+	public String getAllowanceName() {
+		return allowanceName;
+	}
+	/**
+	 * @return the allowanceDescription
+	 */
+	public String getAllowanceDescription() {
+		return allowanceDescription;
+	}
+	/**
+	 * @param allowanceId the allowanceId to set
+	 */
+	public void setAllowanceId(int allowanceId) {
+		this.allowanceId = allowanceId;
+	}
+	/**
+	 * @param allowanceName the allowanceName to set
+	 */
+	public void setAllowanceName(String allowanceName) {
+		this.allowanceName = allowanceName;
+	}
+	/**
+	 * @param allowanceDescription the allowanceDescription to set
+	 */
+	public void setAllowanceDescription(String allowanceDescription) {
+		this.allowanceDescription = allowanceDescription;
+	}
+	/**
+	 * @param allowanceId
+	 * @param allowanceName
+	 * @param allowanceDescription
+	 */
+	public AllowanceMaster(int allowanceId, String allowanceName, String allowanceDescription) {
+		super();
+		this.allowanceId = allowanceId;
+		this.allowanceName = allowanceName;
+		this.allowanceDescription = allowanceDescription;
+	}
+	/**
+	 * 
+	 */
+	public AllowanceMaster() {
+		super();
+	}
 
-		public int getAllowance_id() {
-			return allowance_id;
-		}
+	public AllowanceMaster(int allowanceId) {
+		super();
+		this.allowanceId=allowanceId;
+	}
+	@Override
+	public String toString() {
+		return "AllowanceMaster [allowanceId=" + allowanceId + ", allowanceName=" + allowanceName
+				+ ", allowanceDescription=" + allowanceDescription + "]";
+	}
+	
+	
 
-		public void setAllowance_id(int allowance_id) {
-			this.allowance_id = allowance_id;
-		}
-
-		public String getAllowance_name() {
-			return allowance_name;
-		}
-
-		public void setAllowance_name(String allowance_name) {
-			this.allowance_name = allowance_name;
-		}
-
-		public String getAllowance_description() {
-			return allowance_description;
-		}
-
-		public void setAllowance_description(String allowance_description) {
-			this.allowance_description = allowance_description;
-		}
-
-		public AllowanceMaster(int allowance_id, String allowance_name, String allowance_description) {
-			super();
-			this.allowance_id = allowance_id;
-			this.allowance_name = allowance_name;
-			this.allowance_description = allowance_description;
-		}
-
-		public AllowanceMaster() {
-			super();
-		}
-		
-		public AllowanceMaster(int allowance_id) {
-			super();
-			this.allowance_id=allowance_id;
-		}
-		
-
-		@Override
-		public String toString() {
-			return "AllowanceMaster [allowance_id=" + allowance_id + ", allowance_name=" + allowance_name
-					+ ", allowance_description=" + allowance_description + "]";
-		}
-		
-		
 
 }

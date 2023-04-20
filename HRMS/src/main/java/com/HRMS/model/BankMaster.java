@@ -1,81 +1,101 @@
 package com.HRMS.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="BankMaster")
+@Table(name="tbl_bank")
 public class BankMaster {
 	
 	@Id
-	@Column(name="bank_id")
-	private int bank_id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int bankId;
 	
-	@Column(name="bank_name")
-	private String bank_name;
-	
-	@Column(name="bank_branch")
-	private String bank_branch;
-	
-	@Column(name="bank_description")
-	private String bank_desc;
-
-	public int getBank_id() {
-		return bank_id;
+	private String bankName;
+	private String bankBranch;
+	private String bankDescription;
+	/**
+	 * @return the bankId
+	 */
+	public int getBankId() {
+		return bankId;
 	}
-
-	public void setBank_id(int bank_id) {
-		this.bank_id = bank_id;
+	/**
+	 * @return the bankName
+	 */
+	public String getBankName() {
+		return bankName;
 	}
-
-	public String getBank_name() {
-		return bank_name;
+	/**
+	 * @return the bankBranch
+	 */
+	public String getBankBranch() {
+		return bankBranch;
 	}
-
-	public void setBank_name(String bank_name) {
-		this.bank_name = bank_name;
+	/**
+	 * @return the bankDescription
+	 */
+	public String getBankDescription() {
+		return bankDescription;
 	}
-
-	public String getBank_branch() {
-		return bank_branch;
+	/**
+	 * @param bankId the bankId to set
+	 */
+	public void setBankId(int bankId) {
+		this.bankId = bankId;
 	}
-
-	public void setBank_branch(String bank_branch) {
-		this.bank_branch = bank_branch;
+	/**
+	 * @param bankName the bankName to set
+	 */
+	public void setBankName(String bankName) {
+		this.bankName = bankName;
 	}
-
-	public String getBank_desc() {
-		return bank_desc;
+	/**
+	 * @param bankBranch the bankBranch to set
+	 */
+	public void setBankBranch(String bankBranch) {
+		this.bankBranch = bankBranch;
 	}
-
-	public void setBank_desc(String bank_desc) {
-		this.bank_desc = bank_desc;
+	/**
+	 * @param bankDescription the bankDescription to set
+	 */
+	public void setBankDescription(String bankDescription) {
+		this.bankDescription = bankDescription;
 	}
-
-	public BankMaster(int bank_id, String bank_name, String bank_branch, String bank_desc) {
+	/**
+	 * @param bankId
+	 * @param bankName
+	 * @param bankBranch
+	 * @param bankDescription
+	 */
+	public BankMaster(int bankId, String bankName, String bankBranch, String bankDescription) {
 		super();
-		this.bank_id = bank_id;
-		this.bank_name = bank_name;
-		this.bank_branch = bank_branch;
-		this.bank_desc = bank_desc;
+		this.bankId = bankId;
+		this.bankName = bankName;
+		this.bankBranch = bankBranch;
+		this.bankDescription = bankDescription;
 	}
-
+	/**
+	 * 
+	 */
 	public BankMaster() {
 		super();
 	}
-	 
-	public BankMaster(int bank_id) {
-		super();
-		this.bank_id=bank_id;
-	}
+
 	
+	public BankMaster(int bankId) {
+		super();
+		this.bankId=bankId;
+	}
 	@Override
 	public String toString() {
-		return "BankMaster [bank_id=" + bank_id + ", bank_name=" + bank_name + ", bank_branch=" + bank_branch
-				+ ", bank_desc=" + bank_desc + "]";
+		return "BankMaster [bankId=" + bankId + ", bankName=" + bankName + ", bankBranch=" + bankBranch
+				+ ", bankDescription=" + bankDescription + "]";
 	}
+	
 	
 	
 

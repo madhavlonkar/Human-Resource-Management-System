@@ -9,7 +9,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Employee_Deduction_Master")
+@Table(name = "tbl_employeeDeduction")
 public class EmployeeDeduction {
 
 	@Id

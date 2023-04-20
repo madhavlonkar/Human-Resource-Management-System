@@ -27,7 +27,7 @@ public class EmployeeController {
 	{
 		List<EmployeeMaster> getallemp = this.empservice.getallemp();
 		
-		if(getallemp.size()<=0)
+		if(getallemp.isEmpty())
 		{
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}

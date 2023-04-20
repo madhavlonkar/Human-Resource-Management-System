@@ -1,65 +1,87 @@
 package com.HRMS.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="deduction_master")
+@Table(name="tbl_deduction")
 public class DeductionMaster {
 	
 	@Id
-	@Column(name="deduction_id")
-	private int deduction_id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int deductionId;
 	
-	@Column(name="deduction_name")
-	private String deduction_name;
-	
-	@Column(name="deduction_description")
-	private String deduction_description;
-
-	public int getDeduction_id() {
-		return deduction_id;
+	private String deductionName;
+	private String deductionDescription;
+	/**
+	 * @return the deductionId
+	 */
+	public int getDeductionId() {
+		return deductionId;
 	}
-
-	public void setDeduction_id(int deduction_id) {
-		this.deduction_id = deduction_id;
+	/**
+	 * @return the deductionName
+	 */
+	public String getDeductionName() {
+		return deductionName;
 	}
-
-	public String getDeduction_name() {
-		return deduction_name;
+	/**
+	 * @return the deductionDescription
+	 */
+	public String getDeductionDescription() {
+		return deductionDescription;
 	}
-
-	public void setDeduction_name(String deduction_name) {
-		this.deduction_name = deduction_name;
+	/**
+	 * @param deductionId the deductionId to set
+	 */
+	public void setDeductionId(int deductionId) {
+		this.deductionId = deductionId;
 	}
-
-	public String getDeduction_description() {
-		return deduction_description;
+	/**
+	 * @param deductionName the deductionName to set
+	 */
+	public void setDeductionName(String deductionName) {
+		this.deductionName = deductionName;
 	}
-
-	public void setDeduction_description(String deduction_description) {
-		this.deduction_description = deduction_description;
+	/**
+	 * @param deductionDescription the deductionDescription to set
+	 */
+	public void setDeductionDescription(String deductionDescription) {
+		this.deductionDescription = deductionDescription;
 	}
-
-	public DeductionMaster(int deduction_id, String deduction_name, String deduction_description) {
+	/**
+	 * @param deductionId
+	 * @param deductionName
+	 * @param deductionDescription
+	 */
+	public DeductionMaster(int deductionId, String deductionName, String deductionDescription) {
 		super();
-		this.deduction_id = deduction_id;
-		this.deduction_name = deduction_name;
-		this.deduction_description = deduction_description;
+		this.deductionId = deductionId;
+		this.deductionName = deductionName;
+		this.deductionDescription = deductionDescription;
 	}
-
+	/**
+	 * 
+	 */
 	public DeductionMaster() {
 		super();
 	}
 
+	public DeductionMaster(int dedcutionId) {
+		super();
+		this.deductionId=dedcutionId;
+	}
 	@Override
 	public String toString() {
-		return "DeductionMaster [deduction_id=" + deduction_id + ", deduction_name=" + deduction_name
-				+ ", deduction_description=" + deduction_description + "]";
+		return "DeductionMaster [deductionId=" + deductionId + ", deductionName=" + deductionName
+				+ ", deductionDescription=" + deductionDescription + "]";
 	}
 	
+	
+
 	
 	
 }

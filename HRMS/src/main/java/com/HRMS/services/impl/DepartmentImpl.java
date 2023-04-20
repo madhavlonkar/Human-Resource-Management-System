@@ -2,6 +2,8 @@ package com.HRMS.services.impl;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,76 +12,81 @@ import com.HRMS.model.DepartmentMaster;
 import com.HRMS.services.DepartmentService;
 
 @Service
-public class DepartmentImpl implements DepartmentService{
+public class DepartmentImpl implements DepartmentService {
+
+	private static final Logger log = LoggerFactory.getLogger(DepartmentImpl.class);
 
 	@Autowired
 	private DepartmentDAO departmentdao;
-	
-	@Override
-	public List<DepartmentMaster> getalldepartment() {
-		try {
-			List<DepartmentMaster> findAll = (List<DepartmentMaster>) this.departmentdao.findAll();
-			return findAll;
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-			return null;
-		}
-		
-	}
 
 	@Override
-	public DepartmentMaster finddepartmentbyid(int department_id) {
+	public List<DepartmentMaster> getAllDepartment() {
 		try {
-			DepartmentMaster findById = this.departmentdao.findById(department_id);
-			return findById;
+			return (List<DepartmentMaster>) this.departmentdao.findAll();
+		} catch (Exception e) {
+			log.error("Error Getting All Departments ", e.getMessage());
+			e.printStackTrace();
+			throw new RuntimeException("Error Getting All Department", e);
+		}
+
+	}
+
+	
+	@Override
+	public DepartmentMaster findDepartmentById(int departmentId) {
+		try {
+			DepartmentMaster findById = this.departmentdao.findById(departmentId);
+			if(findById!=null)
+			{
+				return findById;
+			}
+			return null;
 			
 		} catch (Exception e) {
+			log.error("Error Getting Department with id -"+departmentId,e.getMessage());
 			e.printStackTrace();
-			return null;
+			throw new RuntimeException("Error Getting Department with id -"+departmentId,e);
 		}
-		
+
 	}
 
 	@Override
-	public DepartmentMaster adddepartment(DepartmentMaster department) {
-		
+	public DepartmentMaster addDepartment(DepartmentMaster department) {
+
 		try {
-			DepartmentMaster departmentMaster = this.departmentdao.save(department);
-			return departmentMaster;
+			return this.departmentdao.save(department);
 		} catch (Exception e) {
+			log.error("Error Saving Department",e.getMessage());
 			e.printStackTrace();
-			return null;
+			throw new RuntimeException("Error Saving Department",e);
 		}
-	
+
 	}
 
 	@Override
-	public DepartmentMaster updatedepartment(int department_id, DepartmentMaster department) {
-		
+	public DepartmentMaster updateDepartment(DepartmentMaster department) {
+
 		try {
-			department.setDepartment_id(department_id);
-			DepartmentMaster updatedepartment = this.departmentdao.save(department);
-			return updatedepartment;
+			return this.departmentdao.save(department);
 		} catch (Exception e) {
+			log.error("Error Updating Department",e.getMessage());
 			e.printStackTrace();
-			return null;
+			throw new RuntimeException("Error Updating Department",e);
 		}
-	
+
 	}
 
 	@Override
-	public void deletedepartment(int department_id) {
+	public void deleteDepartment(int departmentId) {
 		try {
-			this.departmentdao.deleteById(department_id);
+			this.departmentdao.deleteById(departmentId);
 		} catch (Exception e) {
+			log.error("Error Deleteing Deparment with Id-"+departmentId);
 			e.printStackTrace();
-			
-		}
-		
-	}
+			throw new RuntimeException("Error Deleteing Deparment with Id-"+departmentId);
 
-	
+		}
+
+	}
 
 }

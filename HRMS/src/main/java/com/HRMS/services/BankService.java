@@ -6,11 +6,17 @@ import com.HRMS.model.BankMaster;
 
 public interface BankService {
 
-	List<BankMaster> getbanks();
-	BankMaster addbank(BankMaster bank);
-	BankMaster getbanks(int bank_id);
-	void deletebank(int bank_id);
-	BankMaster updatebank(BankMaster bank, int bank_id);
+	BankMaster updateBank(BankMaster bank);
+
+	void deleteBank(int bank_id);
+
+	BankMaster getBankById(int bank_id);
+
+	BankMaster addBank(BankMaster bank);
+
+	List<BankMaster> getAllBanks();
+
+	
 
 	
 

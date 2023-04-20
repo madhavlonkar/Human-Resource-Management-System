@@ -13,7 +13,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "employee_allowance_master")
+@Table(name = "tbl_employeeallowance")
 public class EmployeeAllowance {
 
 	
@@ -107,7 +107,6 @@ public class EmployeeAllowance {
 	 */
 	public EmployeeAllowance() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

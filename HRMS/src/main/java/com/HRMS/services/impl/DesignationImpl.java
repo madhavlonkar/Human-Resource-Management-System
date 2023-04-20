@@ -2,6 +2,8 @@ package com.HRMS.services.impl;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,77 +14,73 @@ import com.HRMS.services.DesignationService;
 @Service
 public class DesignationImpl implements DesignationService {
 
+	private static final Logger log = LoggerFactory.getLogger(DesignationImpl.class);
+
 	@Autowired
 	private DesignationDAO deisgnationdao;
-	
+
 	@Override
 	public List<DesignationMaster> getAllDesigantion() {
-		List<DesignationMaster> findAll = null;
 		try {
-			findAll = (List<DesignationMaster>) deisgnationdao.findAll();
-			return findAll;
+			return (List<DesignationMaster>) deisgnationdao.findAll();
 		} catch (Exception e) {
+			log.error("Error Getting All Designations", e.getMessage());
 			e.printStackTrace();
-			return findAll;
+			throw new RuntimeException("Error Getting All Designations", e);
 		}
 	}
 
 	@Override
-	public DesignationMaster getDesigantionById(int designation_id) {
-		DesignationMaster findById = null;
+	public DesignationMaster getDesigantionById(int designationId) {
 		try {
-			
-			findById = deisgnationdao.findById(designation_id);
-			return findById;
+			DesignationMaster findById = deisgnationdao.findById(designationId);
+			if(findById!=null)
+			{
+				return findById;
+			}
+			return null;
 
 		} catch (Exception e) {
+			log.error("Error Getting Designation With Id="+designationId);
 			e.printStackTrace();
-			return findById;
+			throw new RuntimeException("Error Getting Designation With Id="+designationId);
 		}
 	}
 
 	@Override
 	public DesignationMaster addDesigantion(DesignationMaster designation) {
-		DesignationMaster designationsaved=null;
 		try {
-			designationsaved= deisgnationdao.save(designation);
-			return designationsaved;
-			
+			return deisgnationdao.save(designation);
 		} catch (Exception e) {
+			log.error("Error While Saving Designation", e.getMessage());
 			e.printStackTrace();
-			return designationsaved;
+			throw new RuntimeException("Error While Saving Designation", e);
 		}
 	}
 
 	@Override
-	public DesignationMaster updateDesigantion(DesignationMaster designation, int designation_id) {
-		DesignationMaster updateddesignation=null;
-		try
-		{
-			designation.setDesignation_id(designation_id);
-			updateddesignation = deisgnationdao.save(designation);
-			return updateddesignation;
-		}
-		catch(Exception e)
-		{
+	public DesignationMaster updateDesigantion(DesignationMaster designation) {
+		try {
+			return deisgnationdao.save(designation);
+		} catch (Exception e) {
+			log.error("Error While Updating Designation", e.getMessage());
 			e.printStackTrace();
-			return updateddesignation;
+			throw new RuntimeException("Error While Updating Designation", e);
 		}
 	}
 
 	@Override
-	public void deleteDesigantion(int designation_id) {
-		try
-		{
-			deisgnationdao.deleteById(designation_id);
-			
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		
-	}
+	public void deleteDesigantion(int designationId) {
+		try {
 
-	
+			deisgnationdao.deleteById(designationId);
+
+		} catch (Exception e) {
+			log.error("Error While Deleting Desigantion with Id="+designationId);
+			e.printStackTrace();
+			throw new RuntimeException("Error While Deleting Desigantion with Id="+designationId);
+		}
+
+	}
 
 }

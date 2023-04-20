@@ -2,6 +2,8 @@ package com.HRMS.services.impl;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,79 +14,74 @@ import com.HRMS.services.DeductionService;
 @Service
 public class DeductionImpl implements DeductionService {
 
+	private static final Logger log = LoggerFactory.getLogger(DeductionImpl.class);
+
 	@Autowired
 	private DeductionDAO deductiondao;
 
 	@Override
-	public List<DeductionMaster> getdeduction() {
+	public List<DeductionMaster> getAllDeduction() {
 		try {
-			List<DeductionMaster> findAll = (List<DeductionMaster>) deductiondao.findAll();
-			return findAll;
+			return (List<DeductionMaster>) deductiondao.findAll();
 		} catch (Exception e) {
+			log.error("Error getting all Deduction", e.getMessage());
 			e.printStackTrace();
-			return null;
+			throw new RuntimeException("Error getting All Deduction", e);
 		}
 
 	}
 
 	@Override
-	public DeductionMaster getdeductionbyid(int deductionid) {
+	public DeductionMaster getDeductionById(int deductionId) {
 
 		try {
-			DeductionMaster findById = deductiondao.findById(deductionid);
-			return findById;
+			DeductionMaster findById = deductiondao.findById(deductionId);
+			if (findById != null) {
+				return findById;
+			}
+			return null;
 		} catch (Exception e) {
+			log.error("Error Getting Deduction with id" + deductionId, e.getMessage());
 			e.printStackTrace();
-			return null;
+			throw new RuntimeException("Error Getting Deduction with id" + deductionId, e);
 		}
 
 	}
 
 	@Override
-	public DeductionMaster adddeduction(DeductionMaster deduction) {
-		try
-		{
-			DeductionMaster addbook = deductiondao.save(deduction);
-			return addbook;
-		}
-		catch(Exception e)
-		{
+	public DeductionMaster addDeduction(DeductionMaster deduction) {
+		try {
+			return deductiondao.save(deduction);
+		} catch (Exception e) {
+			log.error("Error Adding Deduction", e.getMessage());
 			e.printStackTrace();
-			return null;
+			throw new RuntimeException("Error While Saving Deduction", e);
 		}
-		
 
 	}
 
 	@Override
-	public DeductionMaster updatebook(DeductionMaster deduction, int deduction_id) {
-		
-		try
-		{
-			deduction.setDeduction_id(deduction_id);
-			DeductionMaster updateddeduction = deductiondao.save(deduction);
-			return updateddeduction;
-		}
-		catch(Exception e)
-		{
+	public DeductionMaster updateDeduction(DeductionMaster deduction) {
+
+		try {
+			return deductiondao.save(deduction);
+		} catch (Exception e) {
+			log.error("Error Updating Deduction", e.getMessage());
 			e.printStackTrace();
-			return null;
+			throw new RuntimeException("Error While Updating Deduction", e);
 		}
-		
 
 	}
 
 	@Override
-	public void deletededuction(int deduction_id) {
-		try
-		{
-			deductiondao.deleteById(deduction_id);
-		}
-		catch(Exception e)
-		{
+	public void deleteDeduction(int deductionId) {
+		try {
+			deductiondao.deleteById(deductionId);
+		} catch (Exception e) {
+			log.error("Error deleting Deduction with id " + deductionId, e);
 			e.printStackTrace();
+			throw new RuntimeException("Error deleting Deduction with id " + deductionId, e);
 		}
-		
 
 	}
 

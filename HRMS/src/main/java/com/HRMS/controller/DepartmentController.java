@@ -18,82 +18,77 @@ import com.HRMS.services.DepartmentService;
 
 @RestController
 public class DepartmentController {
-	
+
 	@Autowired
 	private DepartmentService departmentservice;
+
 	
 	@GetMapping("/department")
-	public ResponseEntity<List<DepartmentMaster>> getalldepartment()
-	{
-		List<DepartmentMaster> getalldepartment = this.departmentservice.getalldepartment();
-		if(getalldepartment.size()<=0)
-		{
+	public ResponseEntity<List<DepartmentMaster>> getAllDepartment() {
+		List<DepartmentMaster> getalldepartment = this.departmentservice.getAllDepartment();
+		if (getalldepartment.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
-		
 		return ResponseEntity.ok().body(getalldepartment);
 	}
 	
-	@GetMapping("/department/{department_id}")
-	public ResponseEntity<DepartmentMaster> findbyid(@PathVariable("department_id") int department_id)
-	{
-		DepartmentMaster finddepartmentbyid = this.departmentservice.finddepartmentbyid(department_id);
-		if(finddepartmentbyid==null)
-		{
+
+	
+	@GetMapping("/department/{departmentId}")
+	public ResponseEntity<DepartmentMaster> findDepartmentById (@PathVariable("departmentId") int departmentId) {
+		DepartmentMaster findDepartmentById = this.departmentservice.findDepartmentById(departmentId);
+		if (findDepartmentById == null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
-		return ResponseEntity.ok().body(finddepartmentbyid);
+		return ResponseEntity.ok().body(findDepartmentById);
 	}
 	
+	
+
 	@PostMapping("/department")
-	public ResponseEntity<DepartmentMaster> adddepartment(@RequestBody DepartmentMaster department)
-	{
-		DepartmentMaster adddepartment = this.departmentservice.adddepartment(department);
-		if(adddepartment==null)
-		{
+	public ResponseEntity<DepartmentMaster> adddepartment(@RequestBody DepartmentMaster department) {
+		DepartmentMaster adddepartment = this.departmentservice.addDepartment(department);
+		if (adddepartment == null) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
 		return ResponseEntity.ok().body(adddepartment);
 	}
 	
-	@PutMapping("/department/{department_id}")
-	public ResponseEntity<DepartmentMaster> updatedepartment(@PathVariable("department_id") int department_id,@RequestBody DepartmentMaster department)
-	{
-		DepartmentMaster finddepartmentbyid = this.departmentservice.finddepartmentbyid(department_id);
-		if(finddepartmentbyid==null)
-		{
+
+	@PutMapping("/department")
+	public ResponseEntity<DepartmentMaster> updatedepartment(@RequestBody DepartmentMaster department) {
+		
+		int departmentId=department.getDepartment_id();
+		DepartmentMaster finddepartmentbyid = this.departmentservice.findDepartmentById(departmentId);
+		if (finddepartmentbyid == null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
-		
-		DepartmentMaster updatedepartment = this.departmentservice.updatedepartment(department_id,department);
-		if(updatedepartment==null)
-		{
+
+		DepartmentMaster updatedDepartment = this.departmentservice.updateDepartment(department);
+		if (updatedDepartment == null) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
-		return ResponseEntity.ok().body(updatedepartment);
-		
+		return ResponseEntity.ok().body(updatedDepartment);
+
 	}
-	
-	@DeleteMapping("/department/{department_id}")
-	public ResponseEntity<Void> deletedepartment(@PathVariable("department_id") int department_id)
-	{
-		
-		DepartmentMaster finddepartmentbyid = this.departmentservice.finddepartmentbyid(department_id);
-		if(finddepartmentbyid==null)
-		{
+
+	@DeleteMapping("/department/{departmentId}")
+	public ResponseEntity<Void> deleteDepartment(@PathVariable("departmentId") int departmentId) {
+
+		DepartmentMaster finddepartmentbyid = this.departmentservice.findDepartmentById(departmentId);
+		if (finddepartmentbyid == null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
-		try
-		{
-			this.departmentservice.deletedepartment(department_id);
+		
+		
+		try {
+			this.departmentservice.deleteDepartment(departmentId);
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
-		
+
 	}
-			
+
 }

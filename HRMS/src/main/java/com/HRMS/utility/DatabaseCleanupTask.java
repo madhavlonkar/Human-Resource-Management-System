@@ -32,7 +32,7 @@ public class DatabaseCleanupTask {
 			try {
 				Class.forName("com.mysql.cj.jdbc.Driver");
 				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/HRMS", "root", "root");
-				String query = "delete from otp_login_master WHERE ts <= NOW() - INTERVAL 5 minute;";
+				String query = "delete from tbl_otp WHERE ts <= NOW() - INTERVAL 5 minute;";
 				Statement stmt = conn.createStatement();
 				int rowsDeleted = stmt.executeUpdate(query);
 
