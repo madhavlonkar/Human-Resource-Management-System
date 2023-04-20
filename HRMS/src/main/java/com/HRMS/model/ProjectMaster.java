@@ -1,8 +1,9 @@
 package com.HRMS.model;
 
+import java.util.Date;
+
 import jakarta.persistence.*;
 
-import java.util.Date;
 
 @Entity
 @Table(name  = "tbl_Project")

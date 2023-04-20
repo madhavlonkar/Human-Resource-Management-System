@@ -1,6 +1,7 @@
 package com.HRMS.model;
 
-import java.sql.Date;
+
+import java.util.Date;
 
 import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBlank;
 
