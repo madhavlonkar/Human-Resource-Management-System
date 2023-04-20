@@ -23,6 +23,10 @@ public class ProjectMaster {
 
     public ProjectMaster() {
     }
+    
+    public ProjectMaster(int projectId) {
+    	this.Project_Id=projectId;
+    }
 
     public ProjectMaster(Integer project_Id, String project_Name, Integer client_Id, String client_Name, String currency, String location, Integer manger_Id, Integer hr_Id, Date start_Date, Date end_Date, String status) {
         Project_Id = project_Id;
@@ -142,4 +146,6 @@ public class ProjectMaster {
                 ", Status='" + Status + '\'' +
                 '}';
     }
+    
+    
 }
