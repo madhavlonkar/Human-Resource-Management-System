@@ -10,7 +10,7 @@ public class HrmsApplication {
 	
 	public static void main(String[] args) {
 		SpringApplication.run(HrmsApplication.class, args);
-		DatabaseCleanupTask.DatabaseCleanup();
+		DatabaseCleanupTask.DatabaseCleanup(); //Cleaning DataBase After Every 5 Min
 	}
 
 }
