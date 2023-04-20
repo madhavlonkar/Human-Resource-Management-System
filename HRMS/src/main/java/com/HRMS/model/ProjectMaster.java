@@ -1,254 +1,145 @@
 package com.HRMS.model;
 
-import java.sql.Date;
+import jakarta.persistence.*;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import java.util.Date;
 
 @Entity
-@Table(name="tbl_project")
+@Table(name  = "tbl_Project")
 public class ProjectMaster {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer Project_Id;
+    private String Project_Name;
+    private Integer Client_Id;
+    private String Client_Name;
+    private String Currency;
+    private String Location;
+    private Integer Manger_Id;
+    private Integer Hr_Id;
+    private Date Start_Date;
+    private Date End_Date;
+    private String Status;
 
-	@Id
-	int project_id;
-	String project_name;
-	String project_desc;
-	
-	int client_id;
-	String client_name;
-	String currency;
-	String loaction;
-	
-	int manager_id;
-	int hr_id;
-	
-	Date start_date;
-	Date end_date;
-	
-	String Status;
+    public ProjectMaster() {
+    }
 
-	/**
-	 * @return the project_id
-	 */
-	public int getProject_id() {
-		return project_id;
-	}
+    public ProjectMaster(Integer project_Id, String project_Name, Integer client_Id, String client_Name, String currency, String location, Integer manger_Id, Integer hr_Id, Date start_Date, Date end_Date, String status) {
+        Project_Id = project_Id;
+        Project_Name = project_Name;
+        Client_Id = client_Id;
+        Client_Name = client_Name;
+        Currency = currency;
+        Location = location;
+        Manger_Id = manger_Id;
+        Hr_Id = hr_Id;
+        Start_Date = start_Date;
+        End_Date = end_Date;
+        Status = status;
+    }
 
-	/**
-	 * @return the project_name
-	 */
-	public String getProject_name() {
-		return project_name;
-	}
+    public Integer getProject_Id() {
+        return Project_Id;
+    }
 
-	/**
-	 * @return the project_desc
-	 */
-	public String getProject_desc() {
-		return project_desc;
-	}
+    public void setProject_Id(Integer project_Id) {
+        Project_Id = project_Id;
+    }
 
-	/**
-	 * @return the client_id
-	 */
-	public int getClient_id() {
-		return client_id;
-	}
+    public String getProject_Name() {
+        return Project_Name;
+    }
 
-	/**
-	 * @return the client_name
-	 */
-	public String getClient_name() {
-		return client_name;
-	}
+    public void setProject_Name(String project_Name) {
+        Project_Name = project_Name;
+    }
 
-	/**
-	 * @return the currency
-	 */
-	public String getCurrency() {
-		return currency;
-	}
+    public Integer getClient_Id() {
+        return Client_Id;
+    }
 
-	/**
-	 * @return the loaction
-	 */
-	public String getLoaction() {
-		return loaction;
-	}
+    public void setClient_Id(Integer client_Id) {
+        Client_Id = client_Id;
+    }
 
-	/**
-	 * @return the manager_id
-	 */
-	public int getManager_id() {
-		return manager_id;
-	}
+    public String getClient_Name() {
+        return Client_Name;
+    }
 
-	/**
-	 * @return the hr_id
-	 */
-	public int getHr_id() {
-		return hr_id;
-	}
+    public void setClient_Name(String client_Name) {
+        Client_Name = client_Name;
+    }
 
-	/**
-	 * @return the start_date
-	 */
-	public Date getStart_date() {
-		return start_date;
-	}
+    public String getCurrency() {
+        return Currency;
+    }
 
-	/**
-	 * @return the end_date
-	 */
-	public Date getEnd_date() {
-		return end_date;
-	}
+    public void setCurrency(String currency) {
+        Currency = currency;
+    }
 
-	/**
-	 * @return the status
-	 */
-	public String getStatus() {
-		return Status;
-	}
+    public String getLocation() {
+        return Location;
+    }
 
-	/**
-	 * @param project_id the project_id to set
-	 */
-	public void setProject_id(int project_id) {
-		this.project_id = project_id;
-	}
+    public void setLocation(String location) {
+        Location = location;
+    }
 
-	/**
-	 * @param project_name the project_name to set
-	 */
-	public void setProject_name(String project_name) {
-		this.project_name = project_name;
-	}
+    public Integer getManger_Id() {
+        return Manger_Id;
+    }
 
-	/**
-	 * @param project_desc the project_desc to set
-	 */
-	public void setProject_desc(String project_desc) {
-		this.project_desc = project_desc;
-	}
+    public void setManger_Id(Integer manger_Id) {
+        Manger_Id = manger_Id;
+    }
 
-	/**
-	 * @param client_id the client_id to set
-	 */
-	public void setClient_id(int client_id) {
-		this.client_id = client_id;
-	}
+    public Integer getHr_Id() {
+        return Hr_Id;
+    }
 
-	/**
-	 * @param client_name the client_name to set
-	 */
-	public void setClient_name(String client_name) {
-		this.client_name = client_name;
-	}
+    public void setHr_Id(Integer hr_Id) {
+        Hr_Id = hr_Id;
+    }
 
-	/**
-	 * @param currency the currency to set
-	 */
-	public void setCurrency(String currency) {
-		this.currency = currency;
-	}
+    public Date getStart_Date() {
+        return Start_Date;
+    }
 
-	/**
-	 * @param loaction the loaction to set
-	 */
-	public void setLoaction(String loaction) {
-		this.loaction = loaction;
-	}
+    public void setStart_Date(Date start_Date) {
+        Start_Date = start_Date;
+    }
 
-	/**
-	 * @param manager_id the manager_id to set
-	 */
-	public void setManager_id(int manager_id) {
-		this.manager_id = manager_id;
-	}
+    public Date getEnd_Date() {
+        return End_Date;
+    }
 
-	/**
-	 * @param hr_id the hr_id to set
-	 */
-	public void setHr_id(int hr_id) {
-		this.hr_id = hr_id;
-	}
+    public void setEnd_Date(Date end_Date) {
+        End_Date = end_Date;
+    }
 
-	/**
-	 * @param start_date the start_date to set
-	 */
-	public void setStart_date(Date start_date) {
-		this.start_date = start_date;
-	}
+    public String getStatus() {
+        return Status;
+    }
 
-	/**
-	 * @param end_date the end_date to set
-	 */
-	public void setEnd_date(Date end_date) {
-		this.end_date = end_date;
-	}
+    public void setStatus(String status) {
+        Status = status;
+    }
 
-	/**
-	 * @param status the status to set
-	 */
-	public void setStatus(String status) {
-		Status = status;
-	}
-
-	/**
-	 * @param project_id
-	 * @param project_name
-	 * @param project_desc
-	 * @param client_id
-	 * @param client_name
-	 * @param currency
-	 * @param loaction
-	 * @param manager_id
-	 * @param hr_id
-	 * @param start_date
-	 * @param end_date
-	 * @param status
-	 */
-	public ProjectMaster(int project_id, String project_name, String project_desc, int client_id, String client_name,
-			String currency, String loaction, int manager_id, int hr_id, Date start_date, Date end_date,
-			String status) {
-		super();
-		this.project_id = project_id;
-		this.project_name = project_name;
-		this.project_desc = project_desc;
-		this.client_id = client_id;
-		this.client_name = client_name;
-		this.currency = currency;
-		this.loaction = loaction;
-		this.manager_id = manager_id;
-		this.hr_id = hr_id;
-		this.start_date = start_date;
-		this.end_date = end_date;
-		Status = status;
-	}
-
-	/**
-	 * 
-	 */
-	public ProjectMaster() {
-		super();
-	}
-	
-	public ProjectMaster(int project_id) {
-		super();
-		this.project_id=project_id;
-	}
-
-	@Override
-	public String toString() {
-		return "ProjectMaster [project_id=" + project_id + ", project_name=" + project_name + ", project_desc="
-				+ project_desc + ", client_id=" + client_id + ", client_name=" + client_name + ", currency=" + currency
-				+ ", loaction=" + loaction + ", manager_id=" + manager_id + ", hr_id=" + hr_id + ", start_date="
-				+ start_date + ", end_date=" + end_date + ", Status=" + Status + "]";
-	}
-	
-	
-	
-	
+    @Override
+    public String toString() {
+        return "ProjectMaster{" +
+                "Project_Id=" + Project_Id +
+                ", Project_Name='" + Project_Name + '\'' +
+                ", Client_Id=" + Client_Id +
+                ", Client_Name='" + Client_Name + '\'' +
+                ", Currency='" + Currency + '\'' +
+                ", Location='" + Location + '\'' +
+                ", Manger_Id=" + Manger_Id +
+                ", Hr_Id=" + Hr_Id +
+                ", Start_Date=" + Start_Date +
+                ", End_Date=" + End_Date +
+                ", Status='" + Status + '\'' +
+                '}';
+    }
 }
