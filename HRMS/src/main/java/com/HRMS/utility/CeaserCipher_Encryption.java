@@ -4,6 +4,7 @@ public class CeaserCipher_Encryption {
 
 	public String encrypt(String OriMsg)
 	{
+		//Comment Added For Test
 		char encryptString[]=new char[OriMsg.length()];
 		
 		for(int i=0;i<OriMsg.length();i++)
