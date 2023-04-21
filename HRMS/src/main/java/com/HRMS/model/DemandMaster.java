@@ -23,7 +23,7 @@ public class DemandMaster {
     private int qualification_id;
 
     @OneToOne
-    @Column(name = "DemandDesignation")
+    @JoinColumn(name = "DemandDesignation")
     private DesignationMaster demand_designation;
 
     @Column(name = "DemandJobDesc")
