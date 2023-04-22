@@ -2,15 +2,11 @@ package com.HRMS.services.impl;
 
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.hibernate.Session;
-import org.springframework.stereotype.Repository;
 
-import com.HRMS.controller.ProjectController;
 import com.HRMS.dao.ProjectDAO;
 import com.HRMS.model.ProjectMaster;
 import com.HRMS.services.ProjectService;
@@ -19,7 +15,7 @@ import com.HRMS.services.ProjectService;
 @Service
 public class ProjectImpl implements ProjectService {
 	
-	static Logger logger = LogManager.getLogger(ProjectController.class);
+	private static final Logger logger = LoggerFactory.getLogger(ProjectImpl.class);
 	
     @Autowired
     private ProjectDAO projectDAO;

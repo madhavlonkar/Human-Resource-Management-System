@@ -6,5 +6,5 @@ import com.HRMS.model.AllowanceMaster;
 
 public interface AllowanceDAO extends CrudRepository<AllowanceMaster, Integer> {
 
-	public AllowanceMaster findById(int aloowanceId);
+	public AllowanceMaster findById(int allowanceId);
 }

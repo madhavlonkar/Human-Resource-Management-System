@@ -32,7 +32,7 @@ public class ProjectController {
 		return ResponseEntity.of(Optional.of(allProjects));
 	}
 	
-	@GetMapping("/projects/{id}")
+	@GetMapping("/project/{id}")
 	public ResponseEntity<ProjectMaster> getProjectById(@PathVariable("id")int id){
 		ProjectMaster projectById= projectService.getProjectById(id);
 		
