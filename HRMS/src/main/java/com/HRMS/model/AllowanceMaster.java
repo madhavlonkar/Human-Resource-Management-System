@@ -13,6 +13,7 @@ public class AllowanceMaster {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int allowanceId;
+	
 	private String allowanceName;
 	private String allowanceDescription;
 	
