@@ -1,6 +1,10 @@
 package com.HRMS.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,6 +13,7 @@ import com.HRMS.model.OtpLoginMaster;
 import com.HRMS.services.OtpLoginService;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class OtpLoginController {
 
 	@Autowired
@@ -23,10 +28,17 @@ public class OtpLoginController {
 	}
 	
 	@PostMapping("/otpverification")
-	public String otpcheck(@RequestBody OtpLoginMaster otpmaster)
+	public ResponseEntity<Boolean> otpcheck(@RequestBody OtpLoginMaster otpmaster)
 	{
-		String checkotp = this.otpLoginService.checkotp(otpmaster);
-		return checkotp;
+		boolean checkotp = false;
+		checkotp = this.otpLoginService.checkotp(otpmaster);
+		
+		if(checkotp!=false)
+		{
+			return ResponseEntity.status(HttpStatus.ACCEPTED).body(checkotp);
+		}
+				
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(checkotp);
 	}
 
 }

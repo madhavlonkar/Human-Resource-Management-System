@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +15,7 @@ import com.HRMS.model.LoginMaster;
 import com.HRMS.services.LoginService;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class LoginController {
 
 	@Autowired
@@ -35,7 +37,7 @@ public class LoginController {
 	
 	
 	@PostMapping("/login")
-	public ResponseEntity<Object> logincheck(@RequestBody LoginMaster login)
+	public ResponseEntity<LoginMaster> logincheck(@RequestBody LoginMaster login)
 	{
 		//for login checking
 		LoginMaster logincheck = null;
@@ -47,7 +49,7 @@ public class LoginController {
 				return ResponseEntity.status(HttpStatus.ACCEPTED).body(logincheck);
 			}
 			
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(logincheck);
+			return ResponseEntity.status(HttpStatus.ACCEPTED).body(logincheck);
 			
 		}
 		catch(Exception e)

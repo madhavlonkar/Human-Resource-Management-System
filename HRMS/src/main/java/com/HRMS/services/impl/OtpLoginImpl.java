@@ -36,16 +36,21 @@ public class OtpLoginImpl implements OtpLoginService {
 	}
 
 	@Override
-	public String checkotp(OtpLoginMaster otpmaster) {
+	public boolean checkotp(OtpLoginMaster otpmaster) {
 		
 		OtpLoginMaster otplogin = otpLoginDAO.findByUsername(otpmaster.getUsername());
 		
-		if(otplogin.getUsername().equals(otpmaster.getUsername()) && otplogin.getPin()==otpmaster.getPin())
+		if(otplogin==null)
 		{
-			return "Login Successfull";
+			return false;
 		}
 		
-		return "Login Failed";
+		if(otplogin.getUsername().equals(otpmaster.getUsername()) && otplogin.getPin()==otpmaster.getPin())
+		{
+			return true;
+		}
+		
+		return false;
 		
 	}
 

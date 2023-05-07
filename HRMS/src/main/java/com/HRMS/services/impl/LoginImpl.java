@@ -42,6 +42,10 @@ public class LoginImpl implements LoginService {
 		OTPGENERATE_AND_MAIL mail=new OTPGENERATE_AND_MAIL();
 		
 		LoginMaster log=logindao.findByusername(login.getUsername());
+		if(log==null)
+		{
+			return null;
+		}
 		
 //		Encryption_Decryption e =new Encryption_Decryption();
 		CeaserCipher_Encryption c=new CeaserCipher_Encryption();
@@ -56,27 +60,26 @@ public class LoginImpl implements LoginService {
 			if(EncryptedPassword.equals(log.getPassword()))
 			{
 				
-				if(log.getRole().equals("Admin"))
-				{
+				
 //					mail.sendEmail(num);
 					loger.info("Worked");
 					Otpcontroller.OtpSave(login.getUsername(), num);
 					return log;
-				}
-				else if(log.getRole().equals("Employee"))
-				{
-					//mail.sendEmail(num);
-					loger.info("Worked");
-					Otpcontroller.OtpSave(login.getUsername(), num);
-					return log;
-				}
-				else if(log.getRole().equals("HR"))
-				{
-					//mail.sendEmail(num);
-					loger.info("Worked");
-					Otpcontroller.OtpSave(login.getUsername(), num);
-					return log;
-				}
+				
+//				else if(log.getRole().equals("Employee"))
+//				{
+//					//mail.sendEmail(num);
+//					loger.info("Worked");
+//					Otpcontroller.OtpSave(login.getUsername(), num);
+//					return true;
+//				}
+//				else if(log.getRole().equals("HR"))
+//				{
+//					//mail.sendEmail(num);
+//					loger.info("Worked");
+//					Otpcontroller.OtpSave(login.getUsername(), num);
+//					return true;
+//				}
 			}
 		}
 		

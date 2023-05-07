@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import com.HRMS.model.AllowanceMaster;
 import com.HRMS.services.AllowanceService;
 
 @RestController
+@CrossOrigin(origins="*")
 public class AllowanceController {
 
 	@Autowired
@@ -55,16 +57,17 @@ public class AllowanceController {
 
 	}
 
-	@PutMapping("allowances")
-	public ResponseEntity<AllowanceMaster> updateAllowance(@RequestBody AllowanceMaster allowance) {
+	@PutMapping("/allowances/{id}")
+	public ResponseEntity<AllowanceMaster> updateAllowance(@PathVariable("id") int allowanceID,@RequestBody AllowanceMaster allowance) {
 		
-		int id = allowance.getAllowanceId();
+		int id = allowanceID;
 		AllowanceMaster allowanceById = allowanceService.getAllowanceById(id);
 		if (allowanceById == null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
 
 		try {
+			allowance.setAllowanceId(allowanceID);
 			AllowanceMaster updatedAllowance = allowanceService.updateAllowance(allowance);
 			return ResponseEntity.ok().body(updatedAllowance);
 		} catch (Exception e) {
