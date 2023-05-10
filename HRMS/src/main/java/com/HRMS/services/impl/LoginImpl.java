@@ -61,7 +61,7 @@ public class LoginImpl implements LoginService {
 			{
 				
 				
-//					mail.sendEmail(num);
+					mail.sendEmail(num);
 					loger.info("Worked");
 					Otpcontroller.OtpSave(login.getUsername(), num);
 					return log;
