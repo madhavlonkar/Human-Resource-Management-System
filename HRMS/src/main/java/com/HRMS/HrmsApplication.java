@@ -9,8 +9,9 @@ import com.HRMS.utility.DatabaseCleanupTask;
 public class HrmsApplication {
 	
 	public static void main(String[] args) {
+		DatabaseCleanupTask.DatabaseCleanup();
 		SpringApplication.run(HrmsApplication.class, args);
-		DatabaseCleanupTask.DatabaseCleanup(); //Cleaning DataBase After Every 5 Min kjsddnvijsfni
+		
 	}
 
 }
