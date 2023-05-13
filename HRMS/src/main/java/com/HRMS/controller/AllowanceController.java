@@ -23,7 +23,7 @@ import com.HRMS.services.AllowanceService;
 public class AllowanceController {
 
 	@Autowired
-	private AllowanceService allowanceService;
+	private AllowanceService allowanceService; //runtme object creation
 
 	@GetMapping("/allowances")
 	public ResponseEntity<List<AllowanceMaster>> getAllAllowances() {
