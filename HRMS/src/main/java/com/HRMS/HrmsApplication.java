@@ -9,7 +9,7 @@ import com.HRMS.utility.DatabaseCleanupTask;
 public class HrmsApplication {
 	
 	public static void main(String[] args) {
-		DatabaseCleanupTask.DatabaseCleanup(); //Database Cleanup
+		DatabaseCleanupTask.DatabaseCleanup(); //Database Cleanup task
 		SpringApplication.run(HrmsApplication.class, args);
 		
 	}
